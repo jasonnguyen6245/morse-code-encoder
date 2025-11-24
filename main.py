@@ -23,29 +23,33 @@ morse_dict = {
     '$': '...-..-', '@': '.--.-.', ' ': f'{7*" "}'
 }
 
-#Get the input of the user
-inputted_text = input("Enter a message. Your message will be converted in Morse code: ")
 
-#Since the dictionary provides capital letters: inputted_text needs to be uppercase letters
-inputted_text_uppercase = inputted_text.upper()
+while True:
+    #Get the input of the user
+    inputted_text = input("Enter a message or input nothing to leave the program. Your message will be converted in Morse code: ")
 
-#Encode the text inputted from the user
-encoded_message = ""
-for character in inputted_text_uppercase:
-    try:
-        encoded_character = f"{morse_dict[character]}"
-    except KeyError:
-        print(f"The character {character} is not in the dictionary. This character will be ignored and not converted into Morse code.")
-    else:
-        #Space between words = 7 space units
-        if character == " ":
-            encoded_message = encoded_message.strip() #Each character has a trailing 3 space. Have to strip() in order to have 7 spaces. Otherwise, it would display 10 spaces (3+7).
-            encoded_message += encoded_character
-        else: #Not a space = 3 spaces between characters
-            encoded_message += encoded_character + f"{3*' '}"
+    if inputted_text == "":
+        break
+    #Since the dictionary provides capital letters: inputted_text needs to be uppercase letters
+    inputted_text_uppercase = inputted_text.upper()
 
-#Print the text in Morse code
-print(f"Here's '{inputted_text}' in Morse Code: ")
-print(encoded_message)
+    #Encode the text inputted from the user
+    encoded_message = ""
+    for character in inputted_text_uppercase:
+        try:
+            encoded_character = f"{morse_dict[character]}"
+        except KeyError:
+            print(f"The character {character} is not in the dictionary. This character will be ignored and not converted into Morse code.")
+        else:
+            #Space between words = 7 space units
+            if character == " ":
+                encoded_message = encoded_message.strip() #Each character has a trailing 3 space. Have to strip() in order to have 7 spaces. Otherwise, it would display 10 spaces (3+7).
+                encoded_message += encoded_character
+            else: #Not a space = 3 spaces between characters
+                encoded_message += encoded_character + f"{3*' '}"
+
+    #Print the text in Morse code
+    print(f"Here's '{inputted_text}' in Morse Code: ")
+    print(encoded_message)
 
 
